@@ -51,7 +51,7 @@ namespace CustomListUnitTest
             CustomList<string> list = new CustomList<string>;
 
             list.Add("!test");
-            list.Add(1);;
+            list.Add(1);
         }
         [TestMethod]
         public void AddKeepsObjectMemberVariables()
@@ -155,13 +155,37 @@ namespace CustomListUnitTest
         {
             CustomList<string> list = new CustomList<string>;
             int expectedValue = 4;
+            int counter = 0;
 
             list.Add("test");
             list.Add("!test");
-            
-            int actualValue = list.Count;
+            list.Add("test");
+            list.Add("!test");
+            foreach (string item in list)
+            {
+                counter++;
+            }
+           
+            Assert.AreEqual(expectedValue, counter);
+        }
+        [TestMethod]
+        public void IntegersAddThroughIterationLoop()
+        {
+            CustomList<int> list = new CustomList<int>;
+            int expectedValue = 6;
+            int actualValue = 0;
+
+            list.Add(2);
+            list.Add(3);
+            list.Add(1);
+
+            foreach(int number in list)
+            {
+                actualValue += number;
+            }
 
             Assert.AreEqual(expectedValue, actualValue);
         }
+
     }
 }
