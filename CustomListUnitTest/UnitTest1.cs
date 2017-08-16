@@ -66,5 +66,40 @@ namespace CustomListUnitTest
 
             Assert.AreEqual(expectedValue, actualValue);
         }
+        [TestMethod]
+        public void CountValueisTrueWhenZero()
+        {
+            CustomList<string> list = new CustomList<string>;
+            int expectedValue = 0;
+
+            int actualValue = list.Count;
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void CountValueisTrueWhenGreaterThanZero()
+        {
+            CustomList<string> list = new CustomList<string>;
+            int expectedValue = 2;
+
+            list.Add("test");
+            list.Add("test");
+            int actualValue = list.Count;
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void CountValueisTrueWhenItemIsRemoved()
+        {
+            CustomList<string> list = new CustomList<string>;
+            int expectedValue = 1;
+
+            list.Add("test");
+            list.Add("!test");
+            list.Remove("test");
+            int actualValue = list.Count;
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
     }
 }
