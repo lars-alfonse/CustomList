@@ -186,6 +186,32 @@ namespace CustomListUnitTest
 
             Assert.AreEqual(expectedValue, actualValue);
         }
+        [TestMethod]
+        public void ToStringFunctionCombinesStrings()
+        {
+            CustomList<string> list = new CustomList<string>;
+            string expectedValue = "test";
+            string result;
 
+            list.Add("te");
+            list.Add("st");
+
+            result = list.ToString();
+
+            Assert.AreEqual(expectedValue, result);
+        }
+        [TestMethod]
+        public void ToStringFunctionCombinesStringswith()
+        {
+            CustomList<string> list = new CustomList<string>;
+            string expectedValue = "te,st";
+            string result = "";
+
+            list.Add("te");
+            list.Add("st");
+            result = list.ToString(",");
+
+            Assert.AreEqual(expectedValue, result);
+        }
     }
 }
