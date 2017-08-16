@@ -126,5 +126,42 @@ namespace CustomListUnitTest
 
             Assert.AreEqual(expectedValue, actualValue);
         }
+        [TestMethod]
+        public void RemovingStringThatDoesntExistDoesntAffectList()
+        {
+            CustomList<string> list = new CustomList<string>;
+            int expectedValue = 2;
+
+            list.Add("test");
+            list.Add("!test");
+            list.Remove("!!test");
+            int actualValue = list.Count;
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void RemovingFromEmptyListDoesntResultInNegativeCount()
+        {
+            CustomList<string> list = new CustomList<string>;
+            int expectedValue = 0;
+
+            list.Remove("test");
+            int actualValue = list.Count;
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void ForEachLoopIteratesTheCorrectNumberOfTimes()
+        {
+            CustomList<string> list = new CustomList<string>;
+            int expectedValue = 4;
+
+            list.Add("test");
+            list.Add("!test");
+            
+            int actualValue = list.Count;
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
     }
 }
