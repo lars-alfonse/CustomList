@@ -9,8 +9,27 @@ namespace CustomListUnitTest
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public void CheckIfAdds()
         {
+            CustomListUnitTest<string> list = new CustomListUnitTest<string>;
+            string expectedValue = "test";
+
+            list.Add("test");
+            string actualValue = list[0];
+
+            Assert.AreEqual(actualValue, expectedValue);
+        }
+        [TestMethod]
+        public void CheckIfAddRetainsOldValue()
+        {
+            CustomListUnitTest<string> list = new CustomListUnitTest<string>;
+            string expectedValue = "test";
+
+            list.Add("test");
+            list.Add("!test");
+            string actualValue = list[0];
+
+            Assert.AreEqual(actualValue, expectedValue);
         }
     }
 }
