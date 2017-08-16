@@ -101,5 +101,30 @@ namespace CustomListUnitTest
 
             Assert.AreEqual(expectedValue, actualValue);
         }
+        [TestMethod]
+        public void RemoveRemovesItem()
+        {
+            CustomList<string> list = new CustomList<string>;
+            int expectedValue = 0;
+
+            list.Add("test");
+            list.Remove("test");
+            int actualValue = list.Count;
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void RemovingItemFromZeroIndexPlacesTheNextItemAtZero()
+        {
+            CustomList<string> list = new CustomList<string>;
+            string expectedValue = "test";
+
+            list.Add("!test");
+            list.Add("test");
+            list.Remove("!test");
+            string actualValue = list[0];
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
     }
 }
