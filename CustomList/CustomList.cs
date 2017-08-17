@@ -7,9 +7,33 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-    class CustomList<t> : IEnumerable<t>
+    class CustomList<T> : IEnumerable<T>
     {
-        IEnumerator<t> IEnumerable<t>.GetEnumerator()
+        public T[] list;
+        private int count;
+
+        public T this[int i]
+        {
+            get { return list[i]; }
+            set { list[i] = value; }
+        }
+
+        public int Count
+        {
+            get
+            {
+                return count;
+            }
+        }
+
+
+        public void Add(T item)
+        {
+            count += 1;
+            list = new T[count];
+            list[count - 1] = item;
+        }
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
             throw new NotImplementedException();
         }
