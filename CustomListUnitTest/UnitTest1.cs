@@ -201,7 +201,7 @@ namespace CustomListUnitTest
             Assert.AreEqual(expectedValue, result);
         }
         [TestMethod]
-        public void ToStringFunctionCombinesStringswith()
+        public void ToStringFunctionCombinesStringsWithParameter()
         {
             CustomList<string> list = new CustomList<string>;
             string expectedValue = "te,st";
@@ -213,5 +213,21 @@ namespace CustomListUnitTest
 
             Assert.AreEqual(expectedValue, result);
         }
+        [TestMethod]
+        public void AddOperatorRetainsThePositionOfList()
+        {
+            CustomList<string> firstList = new CustomList<string>();
+            CustomList<string> secondList = new CustomList<string>();
+            string expectedValue = "test";
+
+            firstList.Add("test");
+            secondList.Add("!test");
+            CustomList<string> testList = firstList + secondList;
+            string actualValue = testList[0];
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void 
     }
 }
