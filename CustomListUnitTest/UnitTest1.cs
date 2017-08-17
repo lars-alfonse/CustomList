@@ -45,7 +45,7 @@ namespace CustomListUnitTest
             Assert.AreEqual(actualValue, expectedValue);
         }
         [TestMethod]
-        [ExpectedException(typeof(FormatException))]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void StringListDoesntAllowAddInteger()
         {
             CustomList<string> list = new CustomList<string>;
@@ -304,6 +304,183 @@ namespace CustomListUnitTest
             firstList.Add("test");
             testList = firstList - firstList;
             int actualValue = testList.Count;
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void ZipFunctionUpdatesCount()
+        {
+            CustomList<string> list = new CustomList<string>();
+            CustomList<string> testList = new CustomList<string>();
+            CustomList<string> resultList;
+            int expectedValue = 4;
+
+            list.Add("This");
+            list.Add("a");
+            testList.Add("is");
+            testList("test");
+            resultList = list.Zip(testList);
+            int actualResult = resultList.Count;
+
+            Assert.AreEqual(expectedValue, actualResult);
+        }
+        [TestMethod]
+        public void ZipFunctionPlacesZeroIndexOfSecondListToFirstIndexOfResultList()
+        {
+            CustomList<string> list = new CustomList<string>();
+            CustomList<string> testList = new CustomList<string>();
+            CustomList<string> resultList;
+            string expectedValue = "is";
+
+            list.Add("This");
+            list.Add("a");
+            testList.Add("is");
+            testList.Add("test");
+            resultList = list.Zip(testList);
+            string actualResult = resultList[1];
+
+            Assert.AreEqual(expectedValue, actualResult);
+        }
+        [TestMethod]
+        public void ZipFunctionPlacesFirstIndexOfFirstListToSecondIndexOfResultList()
+        {
+            CustomList<string> list = new CustomList<string>();
+            CustomList<string> testList = new CustomList<string>();
+            CustomList<string> resultList;
+            string expectedValue = "a";
+
+            list.Add("This");
+            list.Add("a");
+            testList.Add("is");
+            testList.Add("test");
+            resultList = list.Zip(testList);
+            string actualResult = resultList[2];
+
+            Assert.AreEqual(expectedValue, actualResult);
+        }
+        [TestMethod]
+        public void ZipFunctionAddsLeftOverListItemsToEnd()
+        {
+            CustomList<string> list = new CustomList<string>();
+            CustomList<string> testList = new CustomList<string>();
+            CustomList<string> resultList;
+            string expectedValue = "Thisisatest!testtest!test";
+
+            list.Add("This");
+            list.Add("a");
+            testList.Add("is");
+            testList.Add("test");
+            testList.Add("!test");
+            testList.Add("test");
+            testList.Add("!test");
+
+            resultList = list.Zip(testList);
+            string actualResult = resultList.ToString();
+
+            Assert.AreEqual(expectedValue, actualResult);
+        }
+        [TestMethod]
+        public void SortMovesZeroToFrontOfList()
+        {
+            CustomList<int> list = new CustomList<int>();
+            int expectedValue = 0;
+
+            list.Add(3);
+            list.Add(5);
+            list.Add(1);
+            list.Add(0);
+            list.Sort();
+            int actualValue = list[0];
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void SortMovesHighestNumberToEndOfList()
+        {
+            CustomList<int> list = new CustomList<int>();
+            int expectedValue = 5;
+
+            list.Add(3);
+            list.Add(5);
+            list.Add(1);
+            list.Add(0);
+            list.Sort();
+            int actualValue = list[3];
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void SortRetainsListCount()
+        {
+            CustomList<int> list = new CustomList<int>();
+            int expectedValue = 4;
+
+            list.Add(3);
+            list.Add(5);
+            list.Add(1);
+            list.Add(0);
+            list.Sort();
+            int actualValue = list.Count;
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void SortPlacesAInZeroIndex()
+        {
+            CustomList<string> list = new CustomList<string>();
+            string expectedValue = "a";
+
+            list.Add("v");
+            list.Add("c");
+            list.Add("a");
+            list.Add("b");
+            list.Sort();
+            string actualValue = list[0];
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void SortPlacesVInLastIndex()
+        {
+            CustomList<string> list = new CustomList<string>();
+            string expectedValue = "v";
+
+            list.Add("v");
+            list.Add("c");
+            list.Add("a");
+            list.Add("b");
+            list.Sort();
+            string actualValue = list[3];
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void SortPrioritizesSpecialCharactersOverLetters()
+        {
+            CustomList<string> list = new CustomList<string>();
+            string expectedValue = "!";
+
+            list.Add("v");
+            list.Add("!");
+            list.Add("a");
+            list.Add("b");
+            list.Sort();
+            string actualValue = list[0];
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void SortCanSortStringsNumericaly()
+        {
+            CustomList<string> list = new CustomList<string>();
+            string expectedValue = "1";
+
+            list.Add("2");
+            list.Add("6");
+            list.Add("1");
+            list.Add("8");
+            list.Sort();
+            string actualValue = list[0];
 
             Assert.AreEqual(expectedValue, actualValue);
         }
