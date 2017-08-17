@@ -214,7 +214,7 @@ namespace CustomListUnitTest
             Assert.AreEqual(expectedValue, result);
         }
         [TestMethod]
-        public void AddOperatorRetainsThePositionOfList()
+        public void AddOperatorPlacesFirstListFirst()
         {
             CustomList<string> firstList = new CustomList<string>();
             CustomList<string> secondList = new CustomList<string>();
@@ -228,6 +228,84 @@ namespace CustomListUnitTest
             Assert.AreEqual(expectedValue, actualValue);
         }
         [TestMethod]
-        public void 
+        public void AddingListsUpdatesCount()
+        {
+            CustomList<string> firstList = new CustomList<string>();
+            CustomList<string> secondList = new CustomList<string>();
+            int expectedValue = 2;
+
+            firstList.Add("test");
+            secondList.Add("!test");
+            CustomList<string> testList = firstList + secondList;
+            int actualValue = testList.Count;
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void AddingListsKeepsOrderOfParentLists()
+        {
+            CustomList<string> firstList = new CustomList<string>();
+            CustomList<string> secondList = new CustomList<string>();
+            string expectedValue = "!!!test";
+
+            firstList.Add("test");
+            firstList.Add("!test");
+            secondList.Add("!!test");
+            secondList.Add("!!!test");
+            secondList.Add("!!!!test");
+            CustomList<string> testList = firstList + secondList;
+            string actualValue = testList[3];
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void SubtractOperatorRemovesItemsFromList()
+        {
+            CustomList<string> firstList = new CustomList<string>();
+            CustomList<string> secondList = new CustomList<string>();
+            CustomList<string> testList;
+
+           int expectedValue = 0;
+
+            firstList.Add("test");
+            secondList.Add("test");
+            testList = firstList - secondList;
+            int actualValue = testList.Count;
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void SubtractOperaterRetainsOrderOfList()
+        {
+            CustomList<string> firstList = new CustomList<string>();
+            CustomList<string> secondList = new CustomList<string>();
+            string expectedValue = "!!!!test";
+
+            firstList.Add("test");
+            firstList.Add("!!!test");
+            secondList.Add("!!test");
+            secondList.Add("!!!test");
+            secondList.Add("!!!!test");
+            secondList.Add("!!!!!test");
+            CustomList<string> testList = secondList - firstList;
+            string actualValue = testList[1];
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void SubtractingListFromSelfResultsInEmptyList()
+        {
+            CustomList<string> firstList = new CustomList<string>();
+            CustomList<string> testList;
+            int expectedValue = 0;
+
+            firstList.Add("test");
+            firstList.Add("test");
+            firstList.Add("test");
+            testList = firstList - firstList;
+            int actualValue = testList.Count;
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
     }
 }
