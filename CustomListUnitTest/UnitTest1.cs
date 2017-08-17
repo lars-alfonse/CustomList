@@ -11,7 +11,7 @@ namespace CustomListUnitTest
         [TestMethod]
         public void AddAddsAString()
         {
-            CustomList<string> list = new CustomList<string>;
+            CustomList<string> list = new CustomList<string>();
             string expectedValue = "test";
 
             list.Add("test");
@@ -22,7 +22,7 @@ namespace CustomListUnitTest
         [TestMethod]
         public void AddRetainsOldValues()
         {
-            CustomList<string> list = new CustomList<string>;
+            CustomList<string> list = new CustomList<string>();
             string expectedValue = "test";
 
             list.Add("test");
@@ -34,7 +34,7 @@ namespace CustomListUnitTest
         [TestMethod]
         public void AddRetainsOrder()
         {
-            CustomList<string> list = new CustomList<string>;
+            CustomList<string> list = new CustomList<string>();
             string expectedValue = "test";
 
             list.Add("!test");
@@ -48,7 +48,7 @@ namespace CustomListUnitTest
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void StringListDoesntAllowAddInteger()
         {
-            CustomList<string> list = new CustomList<string>;
+            CustomList<string> list = new CustomList<string>();
 
             list.Add("!test");
             list.Add(1);
@@ -56,7 +56,7 @@ namespace CustomListUnitTest
         [TestMethod]
         public void AddKeepsObjectMemberVariables()
         {
-            CustomList<TestObject> list = new CustomList<TestObject>;
+            CustomList<TestObject> list = new CustomList<TestObject>();
             TestObject testObject = new TestObject();
             testObject.name = "test name";
             string expectedValue = "test name";
@@ -69,7 +69,7 @@ namespace CustomListUnitTest
         [TestMethod]
         public void CountValueisTrueWhenZero()
         {
-            CustomList<string> list = new CustomList<string>;
+            CustomList<string> list = new CustomList<string>();
             int expectedValue = 0;
 
             int actualValue = list.Count;
@@ -79,7 +79,7 @@ namespace CustomListUnitTest
         [TestMethod]
         public void CountValueisTrueWhenGreaterThanZero()
         {
-            CustomList<string> list = new CustomList<string>;
+            CustomList<string> list = new CustomList<string>();
             int expectedValue = 2;
 
             list.Add("test");
@@ -91,7 +91,7 @@ namespace CustomListUnitTest
         [TestMethod]
         public void CountValueisTrueWhenItemIsRemoved()
         {
-            CustomList<string> list = new CustomList<string>;
+            CustomList<string> list = new CustomList<string>();
             int expectedValue = 1;
 
             list.Add("test");
@@ -104,7 +104,7 @@ namespace CustomListUnitTest
         [TestMethod]
         public void RemoveRemovesItem()
         {
-            CustomList<string> list = new CustomList<string>;
+            CustomList<string> list = new CustomList<string>();
             int expectedValue = 0;
 
             list.Add("test");
@@ -116,7 +116,7 @@ namespace CustomListUnitTest
         [TestMethod]
         public void RemovingItemFromZeroIndexPlacesTheNextItemAtZero()
         {
-            CustomList<string> list = new CustomList<string>;
+            CustomList<string> list = new CustomList<string>();
             string expectedValue = "test";
 
             list.Add("!test");
@@ -129,7 +129,7 @@ namespace CustomListUnitTest
         [TestMethod]
         public void RemovingStringThatDoesntExistDoesntAffectList()
         {
-            CustomList<string> list = new CustomList<string>;
+            CustomList<string> list = new CustomList<string>();
             int expectedValue = 2;
 
             list.Add("test");
@@ -142,7 +142,7 @@ namespace CustomListUnitTest
         [TestMethod]
         public void RemovingFromEmptyListDoesntResultInNegativeCount()
         {
-            CustomList<string> list = new CustomList<string>;
+            CustomList<string> list = new CustomList<string>();
             int expectedValue = 0;
 
             list.Remove("test");
@@ -153,7 +153,7 @@ namespace CustomListUnitTest
         [TestMethod]
         public void ForEachLoopIteratesTheCorrectNumberOfTimes()
         {
-            CustomList<string> list = new CustomList<string>;
+            CustomList<string> list = new CustomList<string>();
             int expectedValue = 4;
             int counter = 0;
 
@@ -171,7 +171,7 @@ namespace CustomListUnitTest
         [TestMethod]
         public void IntegersAddThroughIterationLoop()
         {
-            CustomList<int> list = new CustomList<int>;
+            CustomList<int> list = new CustomList<int>();
             int expectedValue = 6;
             int actualValue = 0;
 
@@ -189,7 +189,7 @@ namespace CustomListUnitTest
         [TestMethod]
         public void ToStringFunctionCombinesStrings()
         {
-            CustomList<string> list = new CustomList<string>;
+            CustomList<string> list = new CustomList<string>();
             string expectedValue = "test";
             string result;
 
@@ -203,7 +203,7 @@ namespace CustomListUnitTest
         [TestMethod]
         public void ToStringFunctionCombinesStringsWithParameter()
         {
-            CustomList<string> list = new CustomList<string>;
+            CustomList<string> list = new CustomList<string>();
             string expectedValue = "te,st";
             string result = "";
 
@@ -318,7 +318,7 @@ namespace CustomListUnitTest
             list.Add("This");
             list.Add("a");
             testList.Add("is");
-            testList("test");
+            testList.Add("test");
             resultList = list.Zip(testList);
             int actualResult = resultList.Count;
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-    class CustomList<T> : IEnumerable<T>
+    public class CustomList<T> : IEnumerable<T>
     {
         public T[] list;
         private int count;
@@ -17,7 +17,6 @@ namespace CustomList
             get { return list[i]; }
             set { list[i] = value; }
         }
-
         public int Count
         {
             get
