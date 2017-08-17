@@ -24,13 +24,52 @@ namespace CustomList
                 return count;
             }
         }
+        public CustomList()
+        {
 
+        }
+        public CustomList(CustomList<T> firstList, CustomList<T> secondList)
+        {
+            int indexer = 0;
+            count = firstList.Count + secondList.Count;
+            list = new T[count];
+            for(int i = 0; i < firstList.Count; i++)
+            {
+                list[indexer] = firstList[i];
+                indexer++;
+            }
+            for (int i = 0; i < secondList.Count; i++)
+            {
+                list[indexer] = secondList[i];
+                indexer++;
+            }
 
+        }
+        public static CustomList<T> operator +(CustomList<T> FirstList, CustomList<T> SecondList)
+        {
+            CustomList<T> result;
+            result = new CustomList<T>(FirstList, SecondList);
+            return result;
+        }
+        public static CustomList<T> operator -(CustomList<T> FirstList, CustomList<T> SecondList)
+        {
+            CustomList<T> result;
+            result = new CustomList<T>(FirstList, SecondList);
+            return result;
+        }
         public void Add(T item)
         {
             count += 1;
             list = new T[count];
             list[count - 1] = item;
+        }
+        public void Remove(T item)
+        {
+            bool wasRemoved = false;
+            for (int i = 0; i < Count; i++)
+            {
+
+            }
         }
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
