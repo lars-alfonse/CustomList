@@ -10,9 +10,8 @@ namespace CustomList
 {
     public class CustomList<T> : IEnumerable
     {
-        public T[] list = new T[0];
+        public T[] list;
         private int count;
-     
 
 
         public T this[int i]
@@ -29,7 +28,16 @@ namespace CustomList
         }
         public CustomList()
         {
-
+            list = new T[0];
+        }
+        public CustomList(CustomList<T> listToCopy)
+        {
+            count = listToCopy.Count;
+            list = new T[count];
+            for (int i = 0; i < count; i++)
+            {
+                list[i] = listToCopy[i];
+            }
         }
         public CustomList(T[] list)
         {
@@ -65,7 +73,7 @@ namespace CustomList
         }
         public static CustomList<T> operator -(CustomList<T> FirstList, CustomList<T> SecondList)
         {
-            CustomList<T> returnList = FirstList;
+            CustomList<T> returnList = new CustomList<T>(FirstList);
             foreach(T item in SecondList)
             {
                 returnList.Remove(item);
