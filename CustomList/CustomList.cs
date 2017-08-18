@@ -154,8 +154,9 @@ namespace CustomList
         public CustomList<T> Zip(CustomList<T> inputList)
         {
             int ResultListPosition = 0;
-            T[] listPlaceHolder = new T[count + inputList.Count];
-            if (count == inputList.count)
+            int zipCount = count + inputList.Count;
+            T[] listPlaceHolder = new T[zipCount];
+            if(count == inputList.Count)
             {
                 for (int i = 0; i < count; i++)
                 {
@@ -164,9 +165,61 @@ namespace CustomList
                     listPlaceHolder[ResultListPosition] = inputList[i];
                     ResultListPosition++;
                 }
-                return new CustomList<T>(listPlaceHolder);
             }
-            return new CustomList<T>();
+            else if (!CheckifShorterList(inputList))
+            {
+                int i =0;
+                while (i < inputList.Count)
+                {
+                    for (; i < count; i++)
+                    {
+
+                        listPlaceHolder[ResultListPosition] = list[i];
+                        ResultListPosition++;
+                        listPlaceHolder[ResultListPosition] = inputList[i];
+                        ResultListPosition++;
+                    }
+                    while (ResultListPosition < zipCount)
+                    {
+                        listPlaceHolder[ResultListPosition] = inputList[i];
+                        ResultListPosition++;
+                        i++;
+                    }
+                }
+            }
+            else if (CheckifShorterList(inputList))
+            {
+                int i = 0;
+                while (i < count)
+                {
+                    for (; i < count; i++)
+                    {
+
+                        listPlaceHolder[ResultListPosition] = list[i];
+                        ResultListPosition++;
+                        listPlaceHolder[ResultListPosition] = inputList[i];
+                        ResultListPosition++;
+                    }
+                    while(ResultListPosition < zipCount)
+                    {
+                        listPlaceHolder[ResultListPosition] = inputList[i];
+                        ResultListPosition++;
+                        i++;
+                    }
+                }
+            }
+            return new CustomList<T>(listPlaceHolder);
+        }
+        private bool CheckifShorterList(CustomList<T> inputList)
+        {
+            if(count < inputList.Count)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public IEnumerator GetEnumerator()
         {
