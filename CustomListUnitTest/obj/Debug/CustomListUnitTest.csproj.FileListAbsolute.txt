@@ -1,0 +1,9 @@
+D:\Documents\DevCodeCamp\CustomList\CustomListUnitTest\bin\Debug\CustomListUnitTest.dll
+D:\Documents\DevCodeCamp\CustomList\CustomListUnitTest\bin\Debug\CustomListUnitTest.pdb
+D:\Documents\DevCodeCamp\CustomList\CustomListUnitTest\bin\Debug\CustomList.exe
+D:\Documents\DevCodeCamp\CustomList\CustomListUnitTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\Documents\DevCodeCamp\CustomList\CustomListUnitTest\bin\Debug\CustomList.pdb
+D:\Documents\DevCodeCamp\CustomList\CustomListUnitTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+D:\Documents\DevCodeCamp\CustomList\CustomListUnitTest\obj\Debug\CustomListUnitTest.csprojResolveAssemblyReference.cache
+D:\Documents\DevCodeCamp\CustomList\CustomListUnitTest\obj\Debug\CustomListUnitTest.dll
+D:\Documents\DevCodeCamp\CustomList\CustomListUnitTest\obj\Debug\CustomListUnitTest.pdb

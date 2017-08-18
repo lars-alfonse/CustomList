@@ -51,7 +51,7 @@ namespace CustomListUnitTest
             CustomList<string> list = new CustomList<string>();
 
             list.Add("!test");
-            list.Add(1);
+            //list.Add(1);
         }
         [TestMethod]
         public void AddKeepsObjectMemberVariables()
@@ -257,6 +257,46 @@ namespace CustomListUnitTest
             string actualValue = testList[3];
 
             Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void AddingSeveralListsCombinesThemAll()
+        {
+            CustomList<string> firstList = new CustomList<string>();
+            CustomList<string> secondList = new CustomList<string>();
+            CustomList<string> thirdList = new CustomList<string>();
+            CustomList<string> fourthList = new CustomList<string>();
+            CustomList<string> testList;
+            int expectedValue = 4;
+
+            firstList.Add("test");
+            secondList.Add("test");
+            thirdList.Add("test");
+            fourthList.Add("test");
+            testList = firstList + secondList + thirdList + fourthList;
+            int actualValue = testList.Count;
+
+            Assert.AreEqual(expectedValue, actualValue);
+
+        }
+        //[TestMethod]
+        public void AddingSeveralListsRetainsOrder()
+        {
+            CustomList<string> firstList = new CustomList<string>();
+            CustomList<string> secondList = new CustomList<string>();
+            CustomList<string> thirdList = new CustomList<string>();
+            CustomList<string> fourthList = new CustomList<string>();
+            CustomList<string> testList;
+            string expectedValue = "";
+
+            firstList.Add("test");
+            secondList.Add("!test");
+            thirdList.Add("!!test");
+            fourthList.Add("!!!test");
+            testList = firstList + secondList + thirdList + fourthList;
+            int actualValue = testList.Count;
+
+            Assert.AreEqual(expectedValue, actualValue);
+
         }
         [TestMethod]
         public void SubtractOperatorRemovesItemsFromList()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CustomList;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,12 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-    public class CustomList<T> : IEnumerable<T>
+    public class CustomList<T> : IEnumerator<T>,IEnumerable<T>
     {
-        public T[] list;
+        public T[] list = new T[0];
         private int count;
+        private int position = -1;
+
 
         public T this[int i]
         {
@@ -24,9 +27,50 @@ namespace CustomList
                 return count;
             }
         }
+        public T Current
+        {
+            get
+            {
+                try
+                {
+                    return list[position];
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    throw new InvalidOperationException();
+                }
+
+            }
+        }
+
+        T IEnumerator<T>.Current
+        {
+            get
+            {
+                return Current;
+            }
+        }
+
+        object IEnumerator.Current
+        {
+            get
+            {
+                return Current;
+            }
+        }
+
         public CustomList()
         {
 
+        }
+        public CustomList(T[] list)
+        {
+            count = 0;
+            this.list = list;
+            foreach(T item in list)
+            {
+                count++;
+            }
         }
         public CustomList(CustomList<T> firstList, CustomList<T> secondList)
         {
@@ -53,33 +97,130 @@ namespace CustomList
         }
         public static CustomList<T> operator -(CustomList<T> FirstList, CustomList<T> SecondList)
         {
-            CustomList<T> result;
-            result = new CustomList<T>(FirstList, SecondList);
-            return result;
+            CustomList<T> returnList = FirstList;
+            foreach(T item in SecondList)
+            {
+                returnList.Remove(item);
+            }
+            return returnList;
         }
         public void Add(T item)
         {
-            count += 1;
-            list = new T[count];
-            list[count - 1] = item;
+            T[] listPlaceHolder;
+            listPlaceHolder = new T[count+1];
+            for(int i = 0; i < count; i++)
+            {
+                listPlaceHolder[i] = list[i];
+            }
+            listPlaceHolder[count] = item;
+            count++;
+            list = listPlaceHolder;
         }
         public void Remove(T item)
         {
-            bool wasRemoved = false;
+            T[] listPlaceHolder;
             for (int i = 0; i < Count; i++)
             {
-
+                if (list[i].Equals(item))
+                {
+                    count --;
+                    if (count == 0)
+                    {
+                        list = new T[0];
+                    }
+                    else
+                    {
+                        listPlaceHolder = new T[count];
+                        for (int j = 0; j < i; j++)
+                        {
+                            listPlaceHolder[j] = list[j];
+                        }
+                        for (int j = i + 1; j <= count; j++)
+                        {
+                            listPlaceHolder[j - 1] = list[j];
+                        }
+                        list = listPlaceHolder;
+                    }
+                    return;
+                }
             }
         }
+        public void Sort()
+        {
+
+        }
+        public string ToString(string inputParameter)
+        {
+            string result = "";
+            for (int i = 0; i < count; i++)
+            {
+                if (i == count - 1)
+                {
+                    result += list[i].ToString();
+                }
+                else
+                {
+                    result += (list[i].ToString() + inputParameter);
+                }
+            }
+            return result;
+        }
+        public override string ToString()
+        {
+            string result = "";
+            for (int i = 0; i < count; i++)
+            {
+                result += list[i].ToString();
+            }
+            return result;
+        }
+
+        public CustomList<T> Zip(CustomList<T> inputList)
+        {
+            int ResultListPosition = 0;
+            T[] listPlaceHolder = new T[count + inputList.Count];
+            if (count == inputList.count)
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    listPlaceHolder[ResultListPosition] = list[i];
+                    ResultListPosition++;
+                    listPlaceHolder[ResultListPosition] = inputList[i];
+                    ResultListPosition++;
+                }
+                return new CustomList<T>(listPlaceHolder);
+            }
+            return new CustomList<T>();
+        }
+        public IEnumerator GetEnumerator()
+        {
+            return (IEnumerator)this;
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return (IEnumerator)GetEnumerator();
+        }
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+        }
+
+        public bool MoveNext()
+        {
+            position++;
+            return (position < count);
+        }
+
+
+        public void Reset()
+        {
+            position = -1;
+        }
+
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
             throw new NotImplementedException();
         }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-
     }
 }
