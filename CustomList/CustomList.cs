@@ -43,7 +43,7 @@ namespace CustomList
         {
             count = 0;
             this.list = list;
-            foreach(T item in list)
+            foreach (T item in list)
             {
                 count++;
             }
@@ -53,7 +53,7 @@ namespace CustomList
             int indexer = 0;
             count = firstList.Count + secondList.Count;
             list = new T[count];
-            for(int i = 0; i < firstList.Count; i++)
+            for (int i = 0; i < firstList.Count; i++)
             {
                 list[indexer] = firstList[i];
                 indexer++;
@@ -74,7 +74,7 @@ namespace CustomList
         public static CustomList<T> operator -(CustomList<T> FirstList, CustomList<T> SecondList)
         {
             CustomList<T> returnList = new CustomList<T>(FirstList);
-            foreach(T item in SecondList)
+            foreach (T item in SecondList)
             {
                 returnList.Remove(item);
             }
@@ -83,8 +83,8 @@ namespace CustomList
         public void Add(T item)
         {
             T[] listPlaceHolder;
-            listPlaceHolder = new T[count+1];
-            for(int i = 0; i < count; i++)
+            listPlaceHolder = new T[count + 1];
+            for (int i = 0; i < count; i++)
             {
                 listPlaceHolder[i] = list[i];
             }
@@ -99,7 +99,7 @@ namespace CustomList
             {
                 if (list[i].Equals(item))
                 {
-                    count --;
+                    count--;
                     if (count == 0)
                     {
                         list = new T[0];
@@ -123,8 +123,30 @@ namespace CustomList
         }
         public void Sort()
         {
+            try
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    for (int j = 0; j < count - 1; j++)
+                    {
+                        if (Comparer<T>.Default.Compare(list[j], list[j + 1]) > 0)
+                        {
+                            T placeholder = list[j];
+                            list[j] = list[j + 1];
+                            list[j + 1] = placeholder;
+                        }
+
+                    }
+                }
+            }
+            catch (ArgumentException)
+            {
+                Console.WriteLine("Cannot Sort Objects");
+                return;
+            }
 
         }
+
         public string ToString(string inputParameter)
         {
             string result = "";
@@ -228,6 +250,5 @@ namespace CustomList
                 yield return list[i];
             }
         }
-        
     }
 }

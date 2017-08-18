@@ -20,6 +20,13 @@ namespace CustomList
 
             Console.WriteLine(test);
             Console.ReadLine();
+            CustomList<TestObject> testList = new CustomList<TestObject>();
+            for (int i = 0; i < 4; i++)
+            {
+                TestObject obj = new TestObject();
+                testList.Add(obj);
+            }
+            testList.Sort();
         }
     }
 }

@@ -44,15 +44,7 @@ namespace CustomListUnitTest
 
             Assert.AreEqual(actualValue, expectedValue);
         }
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void StringListDoesntAllowAddInteger()
-        {
-            CustomList<string> list = new CustomList<string>();
 
-            list.Add("!test");
-            //list.Add(1);
-        }
         [TestMethod]
         public void AddKeepsObjectMemberVariables()
         {
@@ -278,7 +270,7 @@ namespace CustomListUnitTest
             Assert.AreEqual(expectedValue, actualValue);
 
         }
-        //[TestMethod]
+        [TestMethod]
         public void AddingSeveralListsRetainsOrder()
         {
             CustomList<string> firstList = new CustomList<string>();
@@ -286,14 +278,14 @@ namespace CustomListUnitTest
             CustomList<string> thirdList = new CustomList<string>();
             CustomList<string> fourthList = new CustomList<string>();
             CustomList<string> testList;
-            string expectedValue = "";
+            string expectedValue = "test!test!!test!!!test";
 
             firstList.Add("test");
             secondList.Add("!test");
             thirdList.Add("!!test");
             fourthList.Add("!!!test");
             testList = firstList + secondList + thirdList + fourthList;
-            int actualValue = testList.Count;
+            string actualValue = testList.ToString();
 
             Assert.AreEqual(expectedValue, actualValue);
 

@@ -1,6 +1,6 @@
 D:\Documents\DevCodeCamp\CustomList\CustomList\bin\Debug\CustomList.exe.config
 D:\Documents\DevCodeCamp\CustomList\CustomList\bin\Debug\CustomList.exe
 D:\Documents\DevCodeCamp\CustomList\CustomList\bin\Debug\CustomList.pdb
-D:\Documents\DevCodeCamp\CustomList\CustomList\obj\Debug\CustomList.csprojResolveAssemblyReference.cache
 D:\Documents\DevCodeCamp\CustomList\CustomList\obj\Debug\CustomList.exe
 D:\Documents\DevCodeCamp\CustomList\CustomList\obj\Debug\CustomList.pdb
+D:\Documents\DevCodeCamp\CustomList\CustomList\obj\Debug\CustomList.csprojResolveAssemblyReference.cache
