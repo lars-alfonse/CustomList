@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-    public class CustomList<T> : IEnumerator<T>,IEnumerable<T>
+    public class CustomList<T> : IEnumerable
     {
         public T[] list = new T[0];
         private int count;
-        private int position = -1;
+     
 
 
         public T this[int i]
@@ -27,38 +27,6 @@ namespace CustomList
                 return count;
             }
         }
-        public T Current
-        {
-            get
-            {
-                try
-                {
-                    return list[position];
-                }
-                catch (IndexOutOfRangeException)
-                {
-                    throw new InvalidOperationException();
-                }
-
-            }
-        }
-
-        T IEnumerator<T>.Current
-        {
-            get
-            {
-                return Current;
-            }
-        }
-
-        object IEnumerator.Current
-        {
-            get
-            {
-                return Current;
-            }
-        }
-
         public CustomList()
         {
 
@@ -194,33 +162,11 @@ namespace CustomList
         }
         public IEnumerator GetEnumerator()
         {
-            return (IEnumerator)this;
+            for (int i = 0; i < count; i++)
+            {
+                yield return list[i];
+            }
         }
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return (IEnumerator)GetEnumerator();
-        }
-
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
-        }
-
-        public bool MoveNext()
-        {
-            position++;
-            return (position < count);
-        }
-
-
-        public void Reset()
-        {
-            position = -1;
-        }
-
-        IEnumerator<T> IEnumerable<T>.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
