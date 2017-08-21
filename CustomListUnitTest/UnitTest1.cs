@@ -566,5 +566,39 @@ namespace CustomListUnitTest
 
             Assert.AreEqual(expectedValue, actualValue);
         }
+        [TestMethod]
+        public void PassingThroughTwoListsIntoConstrutorCreatesCorrectCount()
+        {
+            CustomList<int> firstList = new CustomList<int>();
+            CustomList<int> secondList = new CustomList<int>();
+            int expectedValue = 5;
+
+            firstList.Add(1);
+            firstList.Add(2);
+            firstList.Add(3);
+            secondList.Add(4);
+            secondList.Add(5);
+            CustomList<int> testList = new CustomList<int>(firstList, secondList);
+            int actualValue = testList.Count;
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void PassingThroughTwoListsIntoConstrutorRetainsListOrder()
+        {
+            CustomList<int> firstList = new CustomList<int>();
+            CustomList<int> secondList = new CustomList<int>();
+            string expectedValue = "12345";
+
+            firstList.Add(1);
+            firstList.Add(2);
+            firstList.Add(3);
+            secondList.Add(4);
+            secondList.Add(5);
+            CustomList<int> testList = new CustomList<int>(firstList, secondList);
+            string actualValue = testList.ToString();
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
     }
 }
