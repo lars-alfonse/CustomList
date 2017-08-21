@@ -516,5 +516,55 @@ namespace CustomListUnitTest
 
             Assert.AreEqual(expectedValue, actualValue);
         }
+        [TestMethod]
+        public void PassingCustomListThroughCopiesCount()
+        {
+            CustomList<int> testList = new CustomList<int>();
+            int expectedValue = 3;
+
+            testList.Add(1);
+            testList.Add(2);
+            testList.Add(3);
+            CustomList<int> secondList = new CustomList<int>(testList);
+            int actualValue = secondList.Count;
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void PassingCustomListThroughRetainsOrder()
+        {
+            CustomList<int> testList = new CustomList<int>();
+            int expectedValue = 3;
+
+            testList.Add(1);
+            testList.Add(2);
+            testList.Add(3);
+            CustomList<int> secondList = new CustomList<int>(testList);
+            int actualValue = secondList[2];
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void PassingArrayThroughConstructorAdjustsCount()
+        {
+            int[] testArray = new int[3] { 1, 2, 3 };
+            int expectedValue = 3;
+
+            CustomList<int> testList = new CustomList<int>(testArray);
+            int actualValue = testList.Count;
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void PassingArrayThroughConstructorRetainsOrder()
+        {
+            int[] testArray = new int[3] { 1, 2, 3 };
+            int expectedValue = 3;
+
+            CustomList<int> testList = new CustomList<int>(testArray);
+            int actualValue = testList[2];
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
     }
 }
