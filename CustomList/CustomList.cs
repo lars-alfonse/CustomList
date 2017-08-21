@@ -12,7 +12,7 @@ namespace CustomList
     {
         public T[] list;
         private int count;
-
+        
 
         public T this[int i]
         {
@@ -180,13 +180,7 @@ namespace CustomList
             T[] listPlaceHolder = new T[zipCount];
             if(count == inputList.Count)
             {
-                for (int i = 0; i < count; i++)
-                {
-                    listPlaceHolder[ResultListPosition] = list[i];
-                    ResultListPosition++;
-                    listPlaceHolder[ResultListPosition] = inputList[i];
-                    ResultListPosition++;
-                }
+                listPlaceHolder = InsertAlternatingListItem(inputList);
             }
             else if (!CheckifShorterList(inputList))
             {
@@ -232,7 +226,21 @@ namespace CustomList
             }
             return new CustomList<T>(listPlaceHolder);
         }
-        private bool CheckifShorterList(CustomList<T> inputList)
+        private T[] InsertAlternatingListItem(CustomList<T> inputList)
+        {
+            int ResultListPosition = 0;
+            int zipCount = count + inputList.Count;
+            T[] listPlaceHolder = new T[zipCount];
+            for (int i = 0; i < count; i++)
+            {
+                listPlaceHolder[ResultListPosition] = list[i];
+                ResultListPosition++;
+                listPlaceHolder[ResultListPosition] = inputList[i];
+                ResultListPosition++;
+            }
+            return listPlaceHolder;
+        }
+        public bool CheckifShorterList(CustomList<T> inputList)
         {
             if(count < inputList.Count)
             {

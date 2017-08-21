@@ -11,6 +11,7 @@ namespace CustomList
         static void Main(string[] args)
         {
             CustomList<int> list = new CustomList<int>();
+            Random random = new Random();
 
             list.Add(1);
             list.Add(2);
@@ -26,7 +27,30 @@ namespace CustomList
                 TestObject obj = new TestObject();
                 testList.Add(obj);
             }
-            testList.Sort();
+
+            CustomList<int> testListTwo = new CustomList<int>();
+            for (int i = 0; i < 10; i++)
+            {
+                testListTwo.Add(random.Next(1, 100));
+            }
+            testListTwo.Sort();
+            Console.WriteLine(testListTwo.ToString(", "));
+            Console.ReadLine();
+
+            CustomList<int> testListThree = new CustomList<int>();
+            testListThree.Add(1);
+            testListThree.Add(1);
+            testListThree.Add(1);
+
+            CustomList<int> testListFour;
+            testListFour = testListTwo + testListThree;
+       
+
+            Console.WriteLine(testListFour.ToString(", "));
+            Console.ReadLine();
+            testListFour.Sort();
+            Console.WriteLine(testListFour.ToString(", "));
+            Console.ReadLine();
         }
     }
 }

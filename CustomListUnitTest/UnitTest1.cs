@@ -600,5 +600,35 @@ namespace CustomListUnitTest
 
             Assert.AreEqual(expectedValue, actualValue);
         }
+        [TestMethod]
+        public void CheckingForShortListReturnsTrueWhenShorter()
+        {
+            CustomList<int> testList = new CustomList<int>();
+            CustomList<int> secondList = new CustomList<int>();
+            bool expectedValue = true;
+            
+
+            testList.Add(1);
+            secondList.Add(1);
+            secondList.Add(2);
+            bool actualValue = testList.CheckifShorterList(secondList);
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void CheckingForShortListReturnsFalseWhenLonger()
+        {
+            CustomList<int> testList = new CustomList<int>();
+            CustomList<int> secondList = new CustomList<int>();
+            bool expectedValue = false;
+
+
+            testList.Add(1);
+            secondList.Add(1);
+            testList.Add(2);
+            bool actualValue = testList.CheckifShorterList(secondList);
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
     }
 }
