@@ -59,6 +59,20 @@ namespace CustomListUnitTest
             Assert.AreEqual(expectedValue, actualValue);
         }
         [TestMethod]
+        public void AbleToRemoveObject()
+        {
+            CustomList<TestObject> list = new CustomList<TestObject>();
+            TestObject testObject = new TestObject();
+            testObject.name = "test name";
+            int expectedValue = 0;
+
+            list.Add(testObject);
+            list.Remove(testObject);
+            int actualValue = list.Count;
+
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
         public void CountValueisTrueWhenZero()
         {
             CustomList<string> list = new CustomList<string>();

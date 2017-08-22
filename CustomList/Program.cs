@@ -10,46 +10,28 @@ namespace CustomList
     {
         static void Main(string[] args)
         {
-            CustomList<int> list = new CustomList<int>();
-            Random random = new Random();
+            CustomList<string> testList;
+            CustomList<string> list = new CustomList<string>();
+            list.Add("A");
+            list.Add("B");
+            list.Add("C");
+            list.Add("C");
+            list.Add("D");
+            list.Add("C");
+            list.Add("E");
+            list.Add("C");
+            Console.WriteLine(list.ToString(", "));
+            CustomList<string> listTwo = new CustomList<string>();
+            listTwo.Add("C");
+            listTwo.Add("C");
+            listTwo.Add("E");
+            listTwo.Add("A");
+            listTwo.Add("R");
 
-            list.Add(1);
-            list.Add(2);
-            list.Add(3);
+            Console.WriteLine(listTwo.ToString(", "));
+            testList = list - listTwo;
 
-            string test = list.ToString(",");
-
-            Console.WriteLine(test);
-            Console.ReadLine();
-            CustomList<TestObject> testList = new CustomList<TestObject>();
-            for (int i = 0; i < 4; i++)
-            {
-                TestObject obj = new TestObject();
-                testList.Add(obj);
-            }
-
-            CustomList<int> testListTwo = new CustomList<int>();
-            for (int i = 0; i < 10; i++)
-            {
-                testListTwo.Add(random.Next(1, 100));
-            }
-            testListTwo.Sort();
-            Console.WriteLine(testListTwo.ToString(", "));
-            Console.ReadLine();
-
-            CustomList<int> testListThree = new CustomList<int>();
-            testListThree.Add(1);
-            testListThree.Add(1);
-            testListThree.Add(1);
-
-            CustomList<int> testListFour;
-            testListFour = testListTwo + testListThree;
-       
-
-            Console.WriteLine(testListFour.ToString(", "));
-            Console.ReadLine();
-            testListFour.Sort();
-            Console.WriteLine(testListFour.ToString(", "));
+            Console.WriteLine(testList.ToString(", "));
             Console.ReadLine();
         }
     }
